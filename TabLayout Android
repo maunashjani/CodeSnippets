@@ -1,0 +1,31 @@
+1. Select the 
+
+2. The below code is for onCreateView() method which defines how the views are to be rendered when a TabItem is clicked in the 
+Tabbed Activity.
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+
+            View rootView = null;
+
+            Log.d("MyErrors",  String.valueOf(getArguments().getInt(ARG_SECTION_NUMBER)));
+            int sectionID = getArguments().getInt(ARG_SECTION_NUMBER);
+            if(sectionID==1)
+            {
+               rootView = inflater.inflate(R.layout.fragment_main, container, false);
+                TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+                textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+
+            }
+
+            if(sectionID==2)
+            {
+                rootView = inflater.inflate(R.layout.fragment_main, container, false);
+                TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+                textView.setText("Second Tab Data");
+
+            }
+
+            return rootView;
+        }
