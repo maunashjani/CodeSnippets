@@ -1,9 +1,11 @@
-<ul>
-<li>Create a new or use existing gmail account for the process.</li>
-<li>Create UI having - 1 TextBox for To Email Address and 1 TextBox for Message, a Button(Send), 1 Label for information.</li> 
-<li>Write the below code on Send Button click.</li>
-<h5>Source Code:</h5>
-<p>
+1.Create a new or use existing gmail account for the process. 
+ 
+2.Create UI having 1 TextBox (To Email Address) and 1 TextBox(Email Message), a Button(Send), 1 Label. 
+ 
+3.Write the below code on Send Button click. 
+  
+Source Code: 
+ 
 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com"); 
 SmtpServer.Port = 587; 
 SmtpServer.Credentials = new  System.Net.NetworkCredential("email", "password"); 
@@ -15,4 +17,3 @@ message.To.Add(txtTo.Text);
 SmtpServer.EnableSsl = true; 
 SmtpServer.Send(message); 
 Label1.Text = "Your mail has been sent";
-</p>
