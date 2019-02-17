@@ -1,0 +1,91 @@
+ <script>
+var db = null;
+
+document.addEventListener('deviceready', function() {
+  db = window.sqlitePlugin.openDatabase({name: 'demo.db', location: 'default'});
+});
+                var createDB = function() {
+                        db.transaction(function(tx) {
+                        tx.executeSql('CREATE TABLE IF NOT EXISTS DemoTable (name, score)');
+                      }, function(error) {
+                        alert('Transaction ERROR: ' + error.message);
+                      }, function() {
+                        alert('Populated database OK');
+                      });
+                }
+
+                var insertDB = function() {
+                    db.transaction(function(tx) {
+                        
+                        var v1 = document.getElementById("txt1").value;
+                        var v2 = document.getElementById("txt2").value;
+                        
+                        tx.executeSql('INSERT INTO DemoTable VALUES (?,?)', [v1, v2]);
+                        //tx.executeSql('INSERT INTO DemoTable VALUES (?,?)', ['Betty', 202]);
+                      }, function(error) {
+                        alert('Transaction ERROR: ' + error.message);
+                      }, function() {
+                        alert('Populated database OK');
+                      });
+                }
+
+                //Record Count
+                var selectDB = function() {
+                    db.transaction(function(tx) {
+            tx.executeSql('SELECT count(*) AS mycount, name FROM DemoTable', [], function(tx, rs) {
+              alert('Record count (expected to be 2): ' + rs.rows.item(0).mycount);
+            }, function(tx, error) {
+              alert('SELECT error: ' + error.message);
+            });
+          });
+                }
+                
+               
+               //Record Display
+                var selectAllDB = function() {
+                    db.transaction(function(tx) {
+            tx.executeSql('SELECT * FROM DemoTable', [], function(tx, rs) {
+              
+                var len = rs.rows.length;
+                var i = 0;
+                
+                for (i = 0; i < len; i++){
+                        alert(rs.rows.item(i).name);
+                        alert(rs.rows.item(i).score);
+                }
+                
+            }, function(tx, error) {
+              alert('SELECT error: ' + error.message);
+            });
+          });
+                }
+
+
+            </script>
+        </head>
+
+        <body>
+
+            <button onclick="createDB()">Create DB</button>
+
+            <br>
+            
+            <input type="text" id="txt1">
+            
+            <br>
+            
+            <input type="text" id="txt2">
+            
+            <br>
+
+            <button onclick="insertDB()">Insert</button>
+
+            <br>
+
+            <button onclick="selectDB()">Select</button>
+            
+            <br>
+            
+            <button onclick="selectAllDB()">Select All</button>
+        
+        </body>
