@@ -1,0 +1,41 @@
+<?php
+//Get Server Key from Firebase Cloud Messaging from the following path on Firebase console
+//Firebase Console -> Project Settings -> Cloud Messaging -> Server key
+define( 'API_ACCESS_KEY', 'PASTE_YOUR_SERVER_KEY_HERE' );
+
+//Firebase Registration Token
+$fcmToken = 'ADD_THE_DEVICE_REGSITERED_FIREBASE_FCM_TOKEN' ; 
+
+//Firebase Notification Message Body and Title
+$fcmMessage = array('body' => 'Demo message body here...','title' => 'Demo Title','sound' => "default");
+
+ $fcmFields = array(
+	'to' => $fcmToken,
+        'priority' => 'high',
+	'notification' => $fcmMessage
+);
+
+//Code for executing the send process.
+$headers = array('Authorization: key=' . API_ACCESS_KEY,'Content-Type: application/json');
+ 
+$ch = curl_init();
+curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
+curl_setopt( $ch,CURLOPT_POST, true );
+curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fcmFields ) );
+$result = curl_exec($ch );
+curl_close( $ch );
+//echo $result . "\n\n";
+
+$jsonData = stripslashes(html_entity_decode($result));
+
+$finalResult=json_decode($jsonData,true);
+
+//If $finalResult return 1 then the notification was sent to the device.
+echo $finalResult['success'];
+
+//print_r($finalResult);
+
+?>
