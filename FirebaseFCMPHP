@@ -4,7 +4,7 @@
 define( 'API_ACCESS_KEY', 'PASTE_YOUR_SERVER_KEY_HERE' );
 
 //Firebase Registration Token
-$fcmToken = 'ADD_THE_DEVICE_REGSITERED_FIREBASE_FCM_TOKEN' ; 
+$fcmToken = 'ADD_THE_DEVICE_REGISTERED_FIREBASE_FCM_TOKEN' ; 
 
 //Firebase Notification Message Body and Title
 $fcmMessage = array('body' => 'Demo message body here...','title' => 'Demo Title','sound' => "default");
