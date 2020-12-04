@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Query String</title>
+</head>
+
+<body>
+    Hello World!
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const qs = urlParams.get('name');
+        alert(qs);
+    </script>
+</body>
+
+</html>
