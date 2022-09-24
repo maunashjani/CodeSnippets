@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom HTML Element</title>
+  <script>
+    //The HTMLElement interface represents any HTML element.
+    class DemoElement extends HTMLElement {
+      
+      //Inside the method connectedCallback, 
+      //we define all the functionality the element will have when the element is connected to the DOM (Document Object Model).
+      connectedCallback() {
+        this.innerHTML = "This is demo element.";
+      }
+
+    }
+
+    //Finally, we register our custom element on the CustomElementRegistry interface using the define()
+    customElements.define("demo-element", DemoElement);
+  </script>
+</head>
+<body>
+
+  <!-- using the custom element created-->
+  <demo-element />
+
+  <p>Find more infomation about creating custom elements at <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements".>Using custom elements</a></p>
+</body>
+</html>
