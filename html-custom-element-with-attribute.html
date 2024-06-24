@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom HTML Element</title>
+  <script>
+    // Define a class DemoElement that extends the base HTMLElement class
+    class DemoElement extends HTMLElement {
+      // Specify which attributes to watch for changes
+      static get observedAttributes() {
+        return ["text"];
+      }
+
+      // The constructor method for initializing the custom element
+      constructor() {
+        super(); // Call the constructor of the HTMLElement class
+      }
+
+      // Method called when the element is added to the DOM
+      connectedCallback() {
+        this.render(); // Call the render method to update the element's content
+      }
+
+      // Method called when an observed attribute changes
+      attributeChangedCallback(name, oldValue, newValue) {
+        if (name === "text") { // Check if the changed attribute is 'text'
+          this.render(); // Call the render method to update the element's content
+        }
+      }
+
+      // Method to update the element's inner HTML content
+      render() {
+        // Set the inner HTML to the value of the 'text' attribute or default to "Demo Content"
+        this.innerHTML = this.getAttribute("text") || "Demo Content";
+      }
+    }
+
+    // Define the custom element and associate it with the tag name 'demo-element'
+    customElements.define("demo-element", DemoElement);
+  </script>
+</head>
+
+<body>
+
+  <!-- using the custom element created-->
+  <demo-element text="this is demo element with attribute named text" />
+</body>
+
+</html>
