@@ -11,5 +11,6 @@ Code Snippets - ASP.NET, PHP, C#, Android, HTML, CSS, JS, etc.
   <li><a href="https://github.com/maunashjani/CodeSnippets/tree/master/C%23%20Inheritance%20Demo">C# Inheritance Demo</a></li>
   <li><a href="https://github.com/maunashjani/CodeSnippets/blob/master/JSQueryString">JSQueryString</a></li>
   <li><a href="https://github.com/maunashjani/CodeSnippets/blob/master/html-custom-element.html">html-custom-element.html</a></li>
+  <li><a href="https://github.com/maunashjani/CodeSnippets/blob/master/html-custom-element-with-attribute.html">html-custom-element-with-attribute.html</a></li>
 </ol>
     
